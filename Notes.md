@@ -54,11 +54,10 @@
 
 ### A. Component
 
-    - Dalam konsep react adalah memecah UI menjadi bagian - bagian lebih kecil untuk meningkatka reusability
+    - Dalam konsep react adalah memecah UI menjadi bagian - bagian lebih kecil untuk meningkatkan reusability
     - Terdapat 2 cara untuk membuat react component :
        1. **Functional** Component (***Stateless** Component)
        2. **Class** Component (**Stateful** Component) <- Cara ini sudah usang
-          <pre>
            ```
                 class Button extends React.Component {
                 render() {
@@ -70,19 +69,30 @@
                  }
                 }
            ```
-          </pre>
-
-   <br>
 
 ### B. Props
 
-    - Props / properties dalam react adalah mekanisme yang digunakan untuk mengirim data dari komponen yang lebih tinggi ke komponen yang lebih rendah
+    - Props / properties dalam react adalah mekanisme yang digunakan untuk mengirim data
+    - Data dikirim dari komponen yang lebih tinggi ke komponen yang lebih rendah
     - Properti ini bersifat 'Read Only', artinya tidak dapat diubah oleh komponen yang menerimanya
     - Didefinisikan di komponen utama, seperti `${props.text}`
     - Digunakan seperti atribut <Button text="Login"/>
     - Terdapat special props {props.children}
     - Bisa menggunakan konsep destructuring untuk memberikan nilai default pada sebuah elemen
-       ```
-          const { children, variant='bg-black' } = props; <-- Diletakkan sebelum return fungsi
-          <button>{children}</button> <- {children} diletakkan di dalam sebuah elemen
-       ```
+        ```
+         const { children, variant='bg-black' } = props; <-- Diletakkan sebelum return fungsi
+         <button>{children}</button> <- {children} diletakkan di dalam sebuah elemen
+        ```
+
+  <br>
+
+## Atomic Design
+
+- Atomic Design adalah sebuah desain metodologi diciptakan oleh Brad Frost
+- Terdiri dari 5 Tahapan, yaitu :
+  Sub Atomic -> Typography, Shadows, Color Palette & Spacing (Margin, Padding)
+  1.  Atoms / Elements -> Elemen seperti button
+  2.  Molecules / Elements -> Minimal 2 Bagian seperti : input dan label
+  3.  Organisms / Fragments -> Terdiri dari label email dan inputnya, label password dan inputnya serta button
+  4.  Templates / Layout -> Komponen terdiri dari beberapa elemen dan bisa digunakan berulang - ulang (Reusability)
+  5.  Pages -> Halaman web yang terdiri dari beberapa templates
