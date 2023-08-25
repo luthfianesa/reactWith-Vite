@@ -69,6 +69,7 @@
                  }
                 }
            ```
+     - Gunakan self closing tag jika component tidak memiliki children, contoh : <Button />
 
 ### B. Props
 
@@ -96,3 +97,5 @@
   3.  Organisms / Fragments -> Terdiri dari label email dan inputnya, label password dan inputnya serta button
   4.  Templates / Layout -> Komponen terdiri dari beberapa elemen dan bisa digunakan berulang - ulang (Reusability)
   5.  Pages -> Halaman web yang terdiri dari beberapa templates
+
+* Semua folder atomic design berada di dalam folder components

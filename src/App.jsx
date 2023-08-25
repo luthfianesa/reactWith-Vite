@@ -1,5 +1,7 @@
 import React from "react";
-import Button from "./components/Elements/Button"
+import FormLogin from "./components/Fragments/FormLogin";
+import LoginPage from "./pages/loginPage";
+import RegisterPage from "./Pages/registerPage";
 
 // Class Component
 // class Button extends React.Component {
@@ -43,16 +45,11 @@ import Button from "./components/Elements/Button"
 //   );
 // }
 
-
 function App() {
   return (
-    <div className="flex justify-center bg-blue-600 min-h-screen items-center">
-      <div className="flex gap-x-3">
-        <Button variant="bg-red-700"> Buy Now</Button>
-        <Button buttonName="Login" variant="bg-slate-700" />
-        <Button buttonName="Register" variant="bg-black" />
-        <Button />
-      </div>
+    <div className="flex justify-center  min-h-screen items-center">
+      {/* <LoginPage /> */}
+      <RegisterPage />
     </div>
   );
 }
