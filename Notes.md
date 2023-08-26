@@ -79,7 +79,7 @@
     - Didefinisikan di komponen utama, seperti `${props.text}`
     - Digunakan seperti atribut <Button text="Login"/>
     - Terdapat special props {props.children}
-    - Bisa menggunakan konsep destructuring untuk memberikan nilai default pada sebuah elemen
+    - Bisa menggunakan konsep destructuring untuk memberikan nilai default pada sebuah elemen dan mengirimkan data
         ```
          const { children, variant='bg-black' } = props; <-- Diletakkan sebelum return fungsi
          <button>{children}</button> <- {children} diletakkan di dalam sebuah elemen
@@ -98,4 +98,53 @@
   4.  Templates / Layout -> Komponen terdiri dari beberapa elemen dan bisa digunakan berulang - ulang (Reusability)
   5.  Pages -> Halaman web yang terdiri dari beberapa templates
 
-* Semua folder atomic design berada di dalam folder components
+* Semua folder atomic design berada di dalam folder components kecuali pages, pages diletakkan di dalam folder 'src'
+  <br>
+
+## React Router
+
+- React router adalah library javascript untuk melakukan routing pada aplikasi react.
+- Cara install melalui terminal, npm install react-router-dom
+- Cara pakai di dalam file main.jsx :
+
+  - import { createBrowserRouter, RouterProvider } from "react-router-dom";
+  - Buat sebuah variabel bernama 'router' berisi fungsi createBrowserRouter yang di dalamnya terdapat sebuah array of object berisi path dan element
+  - ```
+        const router = createBrowserRouter([
+        {
+        path: "/",
+        element: <h1>Hello World</h1>
+        },
+        {
+        path: "/login",
+        element: <LoginPage />
+        },
+        {
+        path: "/register",
+        element: <RegisterPage />
+        },
+        ])
+    ```
+
+  - ```
+       Di dalam <React.StrictMode> masukkan <RouterProvider router={router} />
+    ```
+  - Error Handling, ketika memuat route yang salah :
+    - Buat file errorPage di dalam folder pages
+    - import { useRouteError } from "react-router-dom"
+    - Di dalam return berisi html yang menampilkan pesan error :
+    ```
+        <h1>Oops!</h1>
+        <p className="my-5 text-xl">Sorry, an unexpected error has occured</p>
+        <p>{error.statusText || error.message}</p>
+        Di dalam file main.jsx buat object di path:"/"
+        errorElement: <ErrorPage /> 
+    ```
+  ### Client Site Routing, 
+   - Adalah suatu cara dalam mengarahkan traffic / lalu lintas di dalam aplikasi web melalui sisi klien (client-side).
+   - Jadi, tidak mengandalkan server dalam berpindah halaman
+   - Teknik ini biasanya diterapkan pada SPA (Single Page Application) dimana sebagian besar konten dimuat saat pertama kali halaman dimuat
+   - Client site routing membantu **mengelola perubahan tampilan dan navigasi tanpa harus berkomunikasi dengan server**
+   - Kelebihan utama adalah pengalaman pengguna yang responsif dan halus karena perubahan tampilan tidak memerlukan pembongkaran dan pembuatan ulang halaman.
+   - Kekurangannya, ada beberapa tantangan dalam hal SEO dan pengelolaan browser history
+

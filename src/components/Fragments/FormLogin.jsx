@@ -4,8 +4,8 @@ import Button from "../Elements/Button";
 const FormLogin = () => {
   return (
     <form action="">
-      <InputForm label="Email" type="email" placeholder="example@gmail.com" name="email" />
-      <InputForm label="Password" type="password" placeholder="******" name="password" />
+      <InputForm label="Email" type="email" name="email" id="email" placeholder="example@gmail.com" />
+      <InputForm label="Password" type="password" name="password" id="password" placeholder="******" />
       <Button classname="bg-blue-600 w-full"> Login </Button>
     </form>
   );
