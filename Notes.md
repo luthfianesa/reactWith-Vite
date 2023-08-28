@@ -138,13 +138,32 @@
         <p className="my-5 text-xl">Sorry, an unexpected error has occured</p>
         <p>{error.statusText || error.message}</p>
         Di dalam file main.jsx buat object di path:"/"
-        errorElement: <ErrorPage /> 
+        errorElement: <ErrorPage />
     ```
-  ### Client Site Routing, 
-   - Adalah suatu cara dalam mengarahkan traffic / lalu lintas di dalam aplikasi web melalui sisi klien (client-side).
-   - Jadi, tidak mengandalkan server dalam berpindah halaman
-   - Teknik ini biasanya diterapkan pada SPA (Single Page Application) dimana sebagian besar konten dimuat saat pertama kali halaman dimuat
-   - Client site routing membantu **mengelola perubahan tampilan dan navigasi tanpa harus berkomunikasi dengan server**
-   - Kelebihan utama adalah pengalaman pengguna yang responsif dan halus karena perubahan tampilan tidak memerlukan pembongkaran dan pembuatan ulang halaman.
-   - Kekurangannya, ada beberapa tantangan dalam hal SEO dan pengelolaan browser history
 
+  ### Client Site Routing
+
+  - Adalah suatu cara dalam mengarahkan traffic / lalu lintas di dalam aplikasi web melalui sisi klien (client-side).
+  - Jadi, tidak mengandalkan server dalam berpindah halaman
+  - Teknik ini biasanya diterapkan pada SPA (Single Page Application) dimana sebagian besar konten dimuat saat pertama kali halaman dimuat
+  - Client site routing membantu **mengelola perubahan tampilan dan navigasi tanpa harus berkomunikasi dengan server**
+  - Kelebihan utama adalah pengalaman pengguna yang responsif dan halus karena perubahan tampilan tidak memerlukan pembongkaran dan pembuatan ulang halaman.
+  - Kekurangannya, ada beberapa tantangan dalam hal SEO dan pengelolaan browser history
+
+  ### Conditional Rendering
+
+  - Adalah ketika kita ingin menampilkan sesuatu yang berbeda dalam satu elemen
+  - Contohnya adalah dalam login page "Don't have an account? Register" dan dalam register page "Already have an account? Login"
+  - Cara conditional rendering :
+    1.  Menggunakan Ternary :
+    - Ternary direkomendasikan jika hanya ada 2 kondisi
+    - ```
+        {title === "Login" ? "Don't have an account?" : "Already have an account"}
+      ```
+    2.  Menggunakan operator &&
+    - ```
+          {type === "Login" && (
+           <Link to="/register">Register</Link>
+          )}
+      ```
+  - Bisa membuat 2 komponen dalam satu file tetapi harus hanya 1 export default
