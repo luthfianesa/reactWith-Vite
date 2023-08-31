@@ -54,36 +54,37 @@
 
 ### A. Component
 
-    - Dalam konsep react adalah memecah UI menjadi bagian - bagian lebih kecil untuk meningkatkan reusability
-    - Terdapat 2 cara untuk membuat react component :
-       1. **Functional** Component (***Stateless** Component)
-       2. **Class** Component (**Stateful** Component) <- Cara ini sudah usang
-           ```
-                class Button extends React.Component {
-                render() {
-                return (
-                <button class="h-10 px-6 font-semibold rounded-md bg-slate-700 text-white" type="submit">
-                Buy now
-                </button>
-                  );
-                 }
-                }
-           ```
-     - Gunakan self closing tag jika component tidak memiliki children, contoh : <Button />
+- Dalam konsep react adalah memecah UI menjadi bagian - bagian lebih kecil untuk meningkatkan reusability
+- Terdapat 2 cara untuk membuat react component :
+  1. **Functional** Component (**Stateless** Component)
+  2. **Class** Component (**Stateful** Component) <- Cara ini sudah usang
+     ```
+       class Button extends React.Component {
+        render() {
+        return (
+        <button class="h-10 px-6 font-semibold rounded-md bg-slate-700 text-white" type="submit">
+        Buy now
+        </button>
+        );
+        }
+       }
+     ```
+- Gunakan self closing tag jika component tidak memiliki children, contoh : `<Button />`
 
 ### B. Props
 
-    - Props / properties dalam react adalah mekanisme yang digunakan untuk mengirim data
-    - Data dikirim dari komponen yang lebih tinggi ke komponen yang lebih rendah
-    - Properti ini bersifat 'Read Only', artinya tidak dapat diubah oleh komponen yang menerimanya
-    - Didefinisikan di komponen utama, seperti `${props.text}`
-    - Digunakan seperti atribut <Button text="Login"/>
-    - Terdapat special props {props.children}
-    - Bisa menggunakan konsep destructuring untuk memberikan nilai default pada sebuah elemen dan mengirimkan data
-        ```
-         const { children, variant='bg-black' } = props; <-- Diletakkan sebelum return fungsi
-         <button>{children}</button> <- {children} diletakkan di dalam sebuah elemen
-        ```
+- Props / properties dalam react adalah mekanisme yang digunakan untuk mengirim data
+- Data dikirim dari komponen yang lebih tinggi ke komponen yang lebih rendah
+- Properti ini bersifat 'Read Only', artinya tidak dapat diubah oleh komponen yang menerimanya
+- Didefinisikan di komponen utama, seperti `${props.text}`
+- Digunakan seperti atribut `<Button text="Login"/>`
+- Terdapat special props {props.children}
+- Bisa menggunakan konsep destructuring untuk memberikan nilai default pada sebuah elemen dan mengirimkan data
+
+  ```
+   const { children, variant='bg-black' } = props; <-- Diletakkan sebelum return fungsi
+   <button>{children}</button> <- {children} diletakkan di dalam sebuah elemen
+  ```
 
   <br>
 
@@ -150,20 +151,81 @@
   - Kelebihan utama adalah pengalaman pengguna yang responsif dan halus karena perubahan tampilan tidak memerlukan pembongkaran dan pembuatan ulang halaman.
   - Kekurangannya, ada beberapa tantangan dalam hal SEO dan pengelolaan browser history
 
-  ### Conditional Rendering
+## Conditional Rendering
 
-  - Adalah ketika kita ingin menampilkan sesuatu yang berbeda dalam satu elemen
-  - Contohnya adalah dalam login page "Don't have an account? Register" dan dalam register page "Already have an account? Login"
-  - Cara conditional rendering :
-    1.  Menggunakan Ternary :
-    - Ternary direkomendasikan jika hanya ada 2 kondisi
-    - ```
-        {title === "Login" ? "Don't have an account?" : "Already have an account"}
-      ```
-    2.  Menggunakan operator &&
-    - ```
-          {type === "Login" && (
-           <Link to="/register">Register</Link>
-          )}
-      ```
-  - Bisa membuat 2 komponen dalam satu file tetapi harus hanya 1 export default
+- Adalah ketika kita ingin menampilkan sesuatu yang berbeda dalam satu elemen
+- Contohnya adalah dalam login page "Don't have an account? Register" dan dalam register page "Already have an account? Login"
+- Cara conditional rendering :
+  1.  Menggunakan Ternary :
+  - Ternary direkomendasikan jika hanya ada 2 kondisi
+  - ```
+      {title === "Login" ? "Don't have an account?" : "Already have an account"}
+    ```
+  2.  Menggunakan operator &&
+  - ```
+        {type === "Login" && (
+         <Link to="/register">Register</Link>
+        )}
+    ```
+- Bisa membuat 2 komponen dalam satu file tetapi harus hanya 1 export default
+
+## Nested Component
+
+- Adalah sebuah komponen di dalam komponen, digunakan ketika ingin membuat komponen tanpa membuat file baru
+- Caranya adalah :
+
+  1.  Buat komponen baru di dalam folder fragments
+  2.  Isi props di dalam parameter fungsi komponen tersebut
+  3.  Buat destructuring objek
+  4.  Lalu buat nested komponen di bawah komponen utama tersebut contohnya Header, Body & Footer
+  5.  Kita definisikan nested komponen tersebut komponenUtama.nestedComponent = nestedComponent
+  6.  Yang diexport default tetap 1 yaitu komponen utama
+
+  ```
+      import Button from "../Elements/Button";
+
+      const CardProduct = (props) => {
+        const { children } = props;
+        return (
+          <div className="flex justify-center py-5">
+            <div className="w-full max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow">{children}</div>
+          </div>
+         );
+       };
+
+      const Header = (props) => {
+        const { image } = props;
+        return (
+          <a href="#">
+            <img src={image} alt="Golden Watch" className="p-8 rounded-t-lg"></img>
+          </a>
+         );
+       };
+
+      const Body = (props) => {
+        const { children, title } = props;
+        return (
+          <div className="px-5 pb-5">
+            <a href="">
+              <h5 className="text-xl font-semibold tracking-tight text-white">{title}</h5>
+              <p className="text-m text-white">{children}</p>
+            </a>
+           </div>
+          );
+         };
+
+      const Footer = () => {
+        return (
+          <div className="flex items-center justify-between px-5 pb-5">
+            <span className="text-xl font-bold text-white">Rp 1.000.000</span>
+            <Button classname="bg-blue-600">Add to cart</Button>
+          </div>
+         );
+       };
+
+       CardProduct.Header = Header;
+       CardProduct.Body = Body;
+       CardProduct.Footer = Footer;
+
+       export default CardProduct;
+  ```
