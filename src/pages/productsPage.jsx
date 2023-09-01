@@ -1,25 +1,35 @@
 import CardProduct from "../components/Fragments/CardProduct";
 
+const products = [
+  {
+    id: 1,
+    name: "G-5501",
+    price: "Rp 1.200.000",
+    image: "/images/shoes-1.jpg",
+    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi pariatur vitae, ducimus sequi est deleniti accusantium perspiciatis laboriosam voluptates modi earum ea architecto rem neque similique reprehenderit non, possimus
+    sapiente!`,
+  },
+  {
+    id: 2,
+    name: "G-5502",
+    price: "Rp 2.200.000",
+    image: "/images/shoes-1.jpg",
+    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi pariatur vitae, ducimus sequi est deleniti accusantium perspiciatis laboriosam voluptates modi earum ea architecto rem neque similique reprehenderit non, possimus
+    sapiente!`,
+  },
+];
+
 const ProductsPage = () => {
   return (
     // Using Nested Components
     <div className="flex justify-center py-5">
-      <CardProduct>
-        <CardProduct.Header />
-        <CardProduct.Body title="New Watch!">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi pariatur vitae, ducimus sequi est deleniti accusantium perspiciatis laboriosam voluptates modi earum ea architecto rem neque similique reprehenderit non, possimus
-          sapiente!
-        </CardProduct.Body>
-        <CardProduct.Footer />
-      </CardProduct>
-      <CardProduct>
-        <CardProduct.Header />
-        <CardProduct.Body title="New Watch!">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi pariatur vitae, ducimus sequi est deleniti accusantium perspiciatis laboriosam voluptates modi earum ea architecto rem neque similique reprehenderit non, possimus
-          sapiente!
-        </CardProduct.Body>
-        <CardProduct.Footer />
-      </CardProduct>
+      {products.map((product) => (
+        <CardProduct>
+          <CardProduct.Header image={product.image} />
+          <CardProduct.Body name={product.name}>{product.description}</CardProduct.Body>
+          <CardProduct.Footer price={product.price} />
+        </CardProduct>
+      ))}
     </div>
     // ---Without Nested Components
     // <div className="flex justify-center py-5">

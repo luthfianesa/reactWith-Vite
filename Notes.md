@@ -168,6 +168,7 @@
         )}
     ```
 - Bisa membuat 2 komponen dalam satu file tetapi harus hanya 1 export default
+  <br>
 
 ## Nested Component
 
@@ -178,7 +179,7 @@
   2.  Isi props di dalam parameter fungsi komponen tersebut
   3.  Buat destructuring objek
   4.  Lalu buat nested komponen di bawah komponen utama tersebut contohnya Header, Body & Footer
-  5.  Kita definisikan nested komponen tersebut komponenUtama.nestedComponent = nestedComponent
+  5.  Kita bisa memanggil nested komponen tersebut dengan cara => komponenUtama.nestedComponent = nestedComponent
   6.  Yang diexport default tetap 1 yaitu komponen utama
 
   ```
@@ -228,4 +229,51 @@
        CardProduct.Footer = Footer;
 
        export default CardProduct;
+  ```
+
+  <br>
+
+## Rendering Lists
+
+- Digunakan untuk mensederhanakan kode ketika ingin menampilkan sesuatu contohnya seperti sebuah produk
+- Buat sebuah variabel yang berisi array of object
+  ```
+     const products = [
+       {
+         id: 1,
+         name: "G-5501",
+         price: "Rp 1.200.000",
+         image: "/images/shoes-1.jpg",
+         description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi pariatur vitae, ducimus sequi est deleniti accusantium perspiciatis laboriosam voluptates modi earum ea architecto rem neque similique reprehenderit non, possimus
+         sapiente!`,
+       },
+       {
+         id: 2,
+         name: "G-5502",
+         price: "Rp 2.200.000",
+         image: "/images/shoes-1.jpg",
+         description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi pariatur vitae, ducimus sequi est deleniti accusantium perspiciatis laboriosam voluptates modi earum ea architecto rem neque similique reprehenderit non, possimus
+         sapiente!`,
+        },
+       ];
+  ```
+- Lalu memanggilnya dengan map
+
+  ```
+      const ProductsPage = () => {
+        return (
+          // Using Nested Components
+          <div className="flex justify-center py-5">
+            {products.map((product) => (
+              <CardProduct>
+                <CardProduct.Header image={product.image} />
+                <CardProduct.Body name={product.name}>{product.description}</CardProduct.Body>
+                <CardProduct.Footer price={product.price} />
+              </CardProduct>
+            ))}
+           </div>
+         );
+       };
+       export default ProductsPage;
+
   ```
