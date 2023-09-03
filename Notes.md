@@ -277,3 +277,68 @@
        export default ProductsPage;
 
   ```
+
+- Jika menggunkanan list, harus ada key agar tidak timbur error di console
+- ```
+     {products.map((product) => (
+        <CardProduct key={product.id}>
+          <CardProduct.Header image={product.image} />
+          <CardProduct.Body name={product.name}>{product.description}</CardProduct.Body>
+          <CardProduct.Footer price={product.price} />
+        </CardProduct>
+  ```
+
+  <br>
+
+  ## Event Handler
+
+  - Dalam react, event handler adalah sebuah fungsi yang digunakan untuk mengatur dan merespon event - event yang terjadi karena interaksi user atau aksi lain dalam aplikasi react
+  - Contoh event handler seperti : button clicks, form submission, mouse movements, keyboard inputs so on
+  - Event handler sangat essensial dalam membangun UI yang interaktif dan dinamis
+  - Ketika suatu event terjadi, react memanggil fungsi event handler terkait, memungkinkan kita untuk melakukan aksi tertentu atau memperbarui state komponen sebagai response pada event tersebut
+  - Event didefinisikan di dalam parent component, lalu dikirim sebagai props agar bisa digunakan pada child component
+  - Contoh mengambil input data pada form login
+
+    ```
+         // Pada file index.jsx di dalam folder Button
+            const Button = (props) => {
+              const { children, classname = "bg-black", onClick = () => {}, type = "button" } = props;
+              return (
+                <div>
+                  <button className={`h-10 px-6 font-semibold rounded-md ${classname} text-white`} type={type} onClick={() => onClick()}>
+                    {children}
+                  </button>
+                </div>
+              );
+             };
+
+             export default Button;
+
+         // Pada file FormLogin.jsx
+            const FormLogin = () => {
+              const handleLogin = (event) => {
+                event.preventDefault();
+                window.location.href="/products"
+                console.log(event.target.email.value);
+                console.log(event.target.password.value);
+                console.log("login");
+              };
+              return (
+                <form onSubmit={handleLogin}>
+                  <InputForm label="Email" type="email" name="email" id="email" placeholder="example@gmail.com" />
+                    <InputForm label="Password" type="password" name="password" id="password" placeholder="******" />
+                    <Button classname="bg-blue-600 w-full" type="submit">
+                     Login
+                    </Button>
+                </form>
+              );
+            };
+
+            export default FormLogin;
+    ```
+
+- Gunakan .preventDefault() untuk mencegah website melakukan default action
+- Gunakan window.href.location("/halamanYangDituju") untuk mengarahkan setelah event selesai
+- **Pastikan hanya ada 1 parent dalam satu file komponen**
+- **Parent harus diwrap menggunakan ```empty tag <></> atau <fragment> </fragment>```**
+
