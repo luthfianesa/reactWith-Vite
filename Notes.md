@@ -340,5 +340,41 @@
 - Gunakan .preventDefault() untuk mencegah website melakukan default action
 - Gunakan window.href.location("/halamanYangDituju") untuk mengarahkan setelah event selesai
 - **Pastikan hanya ada 1 parent dalam satu file komponen**
-- **Parent harus diwrap menggunakan ```empty tag <></> atau <fragment> </fragment>```**
+- **Parent harus diwrap menggunakan `empty tag <></> atau <fragment> </fragment>`**
+  <br>
 
+## State
+
+- State bisa disebut juga sebuah memori yang dimiliki oleh sebuah komponen
+- Digunakan untuk memanipulasi sebuah elemen seperti :
+  - Mengganti gambar pada carousel
+  - Menambahkan item ke keranjang
+- Jika dibandingkan props, state itu dinamis bisa berubah - ubah
+- State hanya bisa digunakan di dalam stateful component / class component
+- Contoh penggunaan state
+
+  ```
+      import React from "react";
+
+      class Counter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            count: 0,
+          };
+        }
+
+        render() {
+          return (
+            <div className="flex items-center">
+              <h1 className="mr-5">{this.state.count}</h1>
+              <button className="bg-black text-white p-3" onClick={() => this.setState({ count: this.state.count + 1 })}>
+               +
+              </button>
+            </div>
+          );
+         }
+        }
+
+        export default Counter;
+  ```
