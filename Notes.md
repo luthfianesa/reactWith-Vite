@@ -378,3 +378,5 @@
 
         export default Counter;
   ```
+  <br>
+## Use State
